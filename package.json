@@ -1,0 +1,38 @@
+{
+  "name": "heresy-todo",
+  "version": "1.0.0",
+  "description": "The Heresy version of the famous TodoMVC",
+  "scripts": {
+    "build": "npm run css && npm run js",
+    "css": "cp node_modules/todomvc-app-css/index.css css/",
+    "js": "npm run rollup:new && npm run rollup:old",
+    "rollup:new": "cd rollup && rollup --config new.js",
+    "rollup:old": "cd rollup && rollup --config old.js",
+    "start": "http-server"
+  },
+  "keywords": [
+    "todo",
+    "mvc",
+    "wicked",
+    "elements"
+  ],
+  "author": "Andrea Giammarchi",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@ungap/degap": "^0.1.2",
+    "drop-babel-typeof": "^1.0.3",
+    "http-server": "^0.11.1",
+    "rollup": "^1.12.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-includepaths": "^0.2.3",
+    "rollup-plugin-node-resolve": "^5.0.0",
+    "rollup-plugin-terser": "^4.0.4",
+    "todomvc-app-css": "^2.2.0",
+    "uglify-js": "^3.5.13"
+  },
+  "dependencies": {
+    "heresy": "^0.9.1"
+  }
+}
