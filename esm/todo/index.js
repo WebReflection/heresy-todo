@@ -83,7 +83,7 @@ export default {
       case this.footer.current:
         if (target.className === 'clear-completed')
           this.clearCompleted();
-        else if (!target.classList.contains('selected')) {
+        else if (target.hash && !target.classList.contains('selected')) {
           currentTarget.querySelector('a.selected').classList.remove('selected');
           target.classList.add('selected');
           const {list} = this.main.current;
