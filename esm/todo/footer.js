@@ -1,6 +1,8 @@
 import {withAccessor} from './utils.js';
-export default withAccessor('count', class extends HTMLElement {
-  oncount() { this.render(); }
+
+export default withAccessor('count', {
+  extends: 'footer',
+  oncount() { this.render(); },
   render() {
     this.html`
       <span class="todo-count">${this.count}</span>

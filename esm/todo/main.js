@@ -1,12 +1,12 @@
-import {define, ref} from 'heresy';
+import {ref} from 'heresy';
 import {withAccessor} from './utils.js';
 
 import List from './list.js';
-define.local('List:ul', List);
 
-export default withAccessor('data', class extends HTMLElement {
-
-  // the view
+export default withAccessor('data', {
+  extends: 'section',
+  includes: {List},
+  ondata() { this.render(); },
   render() {
     this.html`
       <input id="toggle-all" class="toggle-all" type="checkbox">
@@ -18,10 +18,4 @@ export default withAccessor('data', class extends HTMLElement {
       />
     `;
   }
-
-  // invoked by withAccessor decorator
-  ondata() {
-    this.render();
-  }
-
 });

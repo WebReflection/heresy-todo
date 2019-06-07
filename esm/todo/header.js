@@ -1,4 +1,5 @@
-export default class extends HTMLElement {
+export default {
+  extends: 'header',
   render() {
     this.html`
       <h1>todos</h1>

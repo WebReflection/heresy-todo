@@ -10,11 +10,11 @@ export const data = name => {
 };
 
 export const withAccessor = (...args) => {
-  const Class = args.pop();
+  const Component = args.pop();
   args.forEach(name => {
     const pvt = new WeakMap;
     Object.defineProperty(
-      Class.prototype,
+      Component,
       name,
       {
         get() {
@@ -29,5 +29,5 @@ export const withAccessor = (...args) => {
       }
     );
   });
-  return Class;
+  return Component;
 };

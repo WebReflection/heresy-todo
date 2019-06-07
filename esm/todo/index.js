@@ -1,31 +1,32 @@
-import {define, ref} from 'heresy';
+import {ref} from 'heresy';
+
+import {data} from './utils.js';
 
 import Header from './header.js';
 import Main from './main.js';
 import Footer from './footer.js';
 
-import {data} from './utils.js';
+export default {
 
-// define local render types
-const {local} = define;
-local('Header:header', Header);
-local('Main:section', Main);
-local('Footer:footer', Footer);
+  // declaration + local components + CSS
+  extends: 'section',
+  includes: {Header, Main, Footer},
+  style: (self /*, Header, Main, Footer*/) => `
+    ${self} ul.completed > li:not(.completed),
+    ${self} ul.active > li.completed {
+      display: none;
+    }
+  `,
 
-export default class extends HTMLElement {
+  // lifecycle events
+  oninit() {
+    this.data = data([this.id || '', this.is].join(':'));
+    this.header = ref();
+    this.main = ref();
+    this.footer = ref();
+  },
 
-  static style(selector) {
-    return `
-      ${selector} ul.completed > li:not(.completed),
-      ${selector} ul.active > li.completed {
-        display: none;
-      }
-    `;
-  }
-
-  // invoked automatically on connected
-  //  * if no connectedCallback is defined
-  //  * if no onconnected is defined too
+  // render view
   render() {
     const tot = getCount(this.data.items);
     this.html`
@@ -33,7 +34,7 @@ export default class extends HTMLElement {
       <Main class="main" ref=${this.main} onchange=${this} .data=${this.data}/>
       <Footer class="footer" ref=${this.footer} count=${tot} onclick=${this}/>
     `;
-  }
+  },
 
   // controller methods
   clearCompleted() {
@@ -42,27 +43,19 @@ export default class extends HTMLElement {
       if (items[key].checked)
         delete items[key];
     });
-  }
+  },
   create(text) {
     const id = ++this.data.id;
     this.data.items[id] = {text, checked: false};
-  }
+  },
   toggleAll(checked) {
     const {items} = this.data;
     Object.keys(items).forEach(key => {
       items[key].checked = checked;
     });
-  }
+  },
 
   // events handling
-  // entry point granted to run before any other Custom Element mechanism
-  oninit() {
-    const db = [this.id || '', this.getAttribute('is')].join(':');
-    this.data = data(db);
-    this.header = ref();
-    this.main = ref();
-    this.footer = ref();
-  }
   onchange(event) {
     const {currentTarget, target} = event;
     switch (currentTarget) {
@@ -83,7 +76,7 @@ export default class extends HTMLElement {
         break;
     }
     this.render();
-  }
+  },
   onclick(event) {
     const {currentTarget, target} = event;
     switch (currentTarget) {
