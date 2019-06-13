@@ -1,5 +1,3 @@
-import '@ungap/custom-elements-builtin';
-
 import {define} from 'heresy';
 import Todo from './todo/index.js';
 

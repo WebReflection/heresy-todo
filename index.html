@@ -4,6 +4,12 @@
 		<meta charset="utf-8">
 		<title>Heresy 🔥 TodoMVC</title>
 		<link rel="stylesheet" href="css/index.css">
+		<script>
+		if(this.customElements)
+			try{customElements.define('built-in',document.createElement('p').constructor,{'extends':'p'})}
+			catch(a){document.write('<script src="//unpkg.com/@ungap/custom-elements-builtin"><'+'/script>')}
+		else
+			document.write('<script src="//unpkg.com/document-register-element"><'+'/script>');</script>
 		<script type="module" src="js/new.js"></script>
 		<script nomodule src="js/old.js"></script>
 	</head>

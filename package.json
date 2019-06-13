@@ -33,7 +33,6 @@
     "uglify-js": "^3.5.13"
   },
   "dependencies": {
-    "@ungap/custom-elements-builtin": "^0.2.5",
-    "heresy": "^0.12.6"
+    "heresy": "^0.12.10"
   }
 }
