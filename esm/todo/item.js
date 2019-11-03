@@ -1,13 +1,13 @@
-import {withAccessor} from './utils.js';
-
-export default withAccessor('value', {
+export default {
 
   extends: 'li',
 
+  mappedAttributes: ['value'],
   onvalue() { this.render(); },
+
   onclick(event) {
     event.stopPropagation();
-    this.dispatchEvent(new Event('delete'));
+    this.dispatchEvent(new Event('delete', {bubbles: true}));
   },
 
   render() {
@@ -23,4 +23,4 @@ export default withAccessor('value', {
       <button class="destroy" onclick=${this}></button>
     </div>`;
   }
-});
+};

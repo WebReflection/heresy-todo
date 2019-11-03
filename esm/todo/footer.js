@@ -1,8 +1,9 @@
-import {withAccessor} from './utils.js';
-
-export default withAccessor('count', {
+export default {
   extends: 'footer',
+
+  mappedAttributes: ['count'],
   oncount() { this.render(); },
+
   render() {
     this.html`
       <span class="todo-count">${this.count}</span>
@@ -20,4 +21,4 @@ export default withAccessor('count', {
       <button class="clear-completed">Clear completed</button>
     `;
   }
-});
+};

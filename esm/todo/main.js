@@ -1,11 +1,12 @@
 import {ref} from 'heresy';
-import {withAccessor} from './utils.js';
 
 import List from './list.js';
 
-export default withAccessor('data', {
+export default {
   extends: 'section',
   includes: {List},
+
+  mappedAttributes: ['data'],
   ondata() { this.render(); },
   render() {
     this.html`
@@ -18,4 +19,4 @@ export default withAccessor('data', {
       />
     `;
   }
-});
+};

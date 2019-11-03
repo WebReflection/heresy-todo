@@ -31,7 +31,7 @@ export default {
     const tot = getCount(this.data.items);
     this.html`
       <Header class="header" ref=${this.header} onchange=${this}/>
-      <Main class="main" ref=${this.main} onchange=${this} .data=${this.data}/>
+      <Main class="main" ref=${this.main} onchange=${this} ondelete=${this} .data=${this.data}/>
       <Footer class="footer" ref=${this.footer} count=${tot} onclick=${this}/>
     `;
   },
@@ -75,6 +75,9 @@ export default {
         }
         break;
     }
+    this.render();
+  },
+  ondelete() {
     this.render();
   },
   onclick(event) {

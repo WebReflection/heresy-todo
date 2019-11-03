@@ -1,14 +1,15 @@
 import {html} from 'heresy';
-import {withAccessor} from './utils.js';
 
 import Item from './item.js';
 
-export default withAccessor('items', {
+export default {
 
   extends: 'ul',
   includes: {Item},
 
+  mappedAttributes: ['items'],
   onitems() { this.render(); },
+
   render() {
     const {items} = this;
     this.html`${Object.keys(items).map(
@@ -21,10 +22,8 @@ export default withAccessor('items', {
     const {currentTarget} = event;
     const {value} = currentTarget;
     Object.keys(items).forEach(key => {
-      if (items[key] === value) {
+      if (items[key] === value)
         delete items[key];
-        this.render();
-      }
     });
   }
-});
+};
