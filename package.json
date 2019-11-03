@@ -1,6 +1,6 @@
 {
   "name": "heresy-todo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The Heresy version of the famous TodoMVC",
   "scripts": {
     "build": "npm run css && npm run js",
