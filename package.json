@@ -33,6 +33,6 @@
     "uglify-js": "^3.6.7"
   },
   "dependencies": {
-    "heresy": "^0.17.2"
+    "heresy": "^0.17.3"
   }
 }
